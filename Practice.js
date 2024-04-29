@@ -18,12 +18,12 @@
 // // Result: 5
 
 
-// // toString
-// let temperatures = [25, 28, 30, 29, 27, 26, 24];
-// console.log(temperatures);
-// let temperatureString = temperatures.toString();
-// console.log(temperatureString);
-// // Result: fruitString = 25, 28, 30, 29, 27, 26, 24
+// toString
+let temperatures = [25, 28, 30, 29, 27, 26, 24];
+console.log(temperatures);
+let temperatureString = temperatures.toString();
+console.log(temperatureString);
+// Result: fruitString = 25, 28, 30, 29, 27, 26, 24
 
 // // splice
 // let fruits = ['apple', 'banana', 'orange'];

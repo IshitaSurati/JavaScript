@@ -1,4 +1,5 @@
-let array = [1, 2, 3, 4, 5, 6]
+let array = [3,4,1,2,4]
 console.log("Before Pop : ",array);
 let last = array.pop()
-console.log("Aftere Pop : ",array);
+let output=array.toString()
+console.log("Aftere Pop : ",output);
