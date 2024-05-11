@@ -1,0 +1,70 @@
+/* Define CSS variables */
+:root {
+    --primary-color: #4CAF50;
+    --primary-hover-color: #45a045;
+    --border-color: #ddd;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --gap: 15px;
+}
+
+/* Apply box-sizing reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Product grid layout */
+#product {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+    text-align: center;
+}
+
+/* Product card styles */
+#product div {
+    border: 1px solid var(--border-color);
+    margin: 10px;
+    box-shadow: 0px 0px 10px var(--box-shadow-color);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Product image styles */
+#product div img {
+    width: 200px;
+    padding: 10px;
+}
+
+/* Product title styles */
+#product h3 {
+    font-size: medium;
+}
+
+/* Product price styles */
+#product div p {
+    color: red; 
+}
+
+/* Product button styles */
+#product div button {
+    width: 250px;
+    padding: 10px;
+    margin: 5px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: medium;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Button hover effect */
+#product div button:hover {
+    background-color: var(--primary-hover-color);
+}
