@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        form {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form input[type="text"] {
+            width: 150px;
+            margin-right: 10px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            padding: 5px 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        td button {
+            margin-right: 5px;
+            padding: 3px 8px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        td button:hover {
+            background-color: #c62828;
+        }
+
+        #deleteAll {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #deleteAll:hover {
+            background-color: #c62828;
+        }
+
+        .update-form {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .update-form input[type="text"] {
+            width: 100px;
+        }
+
+        .update-form button {
+            background-color: #2196f3;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="studentData">
+        <input type="text" id="grid" placeholder="Grid">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="course" placeholder="Course">
+        <button type="submit">Submit</button>
+    </form>
+    <button id="deleteAll">Delete All</button>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Grid</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <!-- Update Form -->
+    <form id="updateForm" class="update-form">
+        <input type="text" id="updateGrid" placeholder="Grid">
+        <input type="text" id="updateName" placeholder="Name">
+        <input type="text" id="updateCourse" placeholder="Course">
+        <button id="updateButton" type="button">Update</button>
+        <button id="cancelUpdate" type="button">Cancel</button>
+    </form>
+</body>
+<script src="./script.js"></script>
+<script>
+    let students = [];
+
+    const Display = () => {
+        document.getElementById('tbody').innerHTML = "";
+        students.forEach((ele, index) => {
+            let tr = document.createElement('tr');
+            let td1 = document.createElement('td');
+            td1.innerHTML = ele.grid;
+            let td2 = document.createElement('td');
+            td2.innerHTML = ele.name;
+            let td3 = document.createElement('td');
+            td3.innerHTML = ele.course;
+            let td4 = document.createElement('td');
+
+            let removeButton = document.createElement('button');
+            removeButton.textContent = "Remove";
+            removeButton.addEventListener("click", () => {
+                deleteStudent(index);
+            });
+
+            let updateButton = document.createElement('button');
+            updateButton.textContent = "Update";
+            updateButton.addEventListener("click", () => {
+                showUpdateForm(index);
+            });
+
+            td4.appendChild(removeButton);
+            td4.appendChild(updateButton);
+            tr.append(td1, td2, td3, td4);
+            document.getElementById("tbody").appendChild(tr);
+        });
+    };
+
+    const handleStudentData = (e) => {
+        e.preventDefault();
+        let data = {
+            grid: document.getElementById('grid').value,
+            name: document.getElementById('name').value,
+            course: document.getElementById('course').value
+        };
+        students.push(data);
+        Display();
+    };
+
+    const deleteData = () => {
+        document.getElementById('tbody').innerHTML = "";
+        students = [];
+    };
+
+    const deleteStudent = (index) => {
+        students.splice(index, 1);
+        Display();
+    };
+
+    const showUpdateForm = (index) => {
+        const student = students[index];
+        document.getElementById('updateGrid').value = student.grid;
+        document.getElementById('updateName').value = student.name;
+        document.getElementById('updateCourse').value = student.course;
+        document.getElementById('updateButton').addEventListener('click', () => {
+            updateStudent(index);
+            hideUpdateForm();
+        });
+        document.getElementById('cancelUpdate').addEventListener('click', hideUpdateForm);
+        document.getElementById('updateForm').style.display = 'block';
+    };
+
+    const updateStudent = (index) => {
+        students[index].grid = document.getElementById('updateGrid').value;
+        students[index].name = document.getElementById('updateName').value;
+        students[index].course = document.getElementById('updateCourse').value;
+        Display();
+    };
+
+    const hideUpdateForm = () => {
+        document.getElementById('updateForm').style.display = 'none';
+    };
+
+    document.getElementById("studentData").addEventListener("submit", handleStudentData);
+    document.getElementById("deleteAll").addEventListener("click", deleteData);
+
+</script>
+
+</html>
