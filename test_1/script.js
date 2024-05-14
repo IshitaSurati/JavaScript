@@ -1,76 +1,71 @@
-let employees = [];
+let employee = [];
 
-const displayEmployees = () => {
-    let tableBody = document.getElementById('TableBody');
-    tableBody.innerHTML = "";
-    let totalSalary = 0;
-
-    employees.map((emp, index) => {
-        let tr = document.createElement('tr');
-        let td1 = document.createElement('td');
-        td1.textContent = emp.name;
-        let td2 = document.createElement('td');
-        td2.textContent = emp.jobrole;
-        let td3 = document.createElement('td');
-        td3.textContent = emp.department;
-        let td4 = document.createElement('td');
-        td4.textContent = emp.salary;
-        let td5 = document.createElement('td');
-        td5.textContent = emp.contactemail;
-        let td6 = document.createElement('td');
-        td6.textContent = emp.workexperience;
-        let td7 = document.createElement('td');
-        td7.textContent = emp.workexperience > 5 ? "Senior" : "Junior";
-        let td8 = document.createElement('td');
-        let deleteButton = document.createElement('button');
-        deleteButton.textContent = "Delete";
-        deleteButton.classList.add("delete-btn"); 
-        deleteButton.addEventListener("click", () => deleteEmployee(index));
-        td8.append(deleteButton);
-
-        tr.append(td1, td2, td3, td4, td5, td6, td7, td8);
-        tableBody.append(tr);
+const displayData = () => {
+    console.log("Displaying data:", employee);
+    const tbody = document.getElementById('TableBody');
+    tbody.innerHTML = "";
+    employee.map((element, index) => {
+        console.log("Employee:", element);
+        let row = document.createElement('tr');
+        let col1 = document.createElement('td');
+        col1.textContent = element.name;
+        let col2 = document.createElement('td');
+        col2.textContent = element.jobrole;
+        let col3 = document.createElement('td');
+        col3.textContent = element.department;
+        let col4 = document.createElement('td');
+        col4.textContent = element.salary;
+        let col5 = document.createElement('td');
+        col5.textContent = element.email;
+        let col6 = document.createElement('td');
+        col6.textContent = element.workexperience;
+        let col7 = document.createElement('td');
+        col7.textContent = element.workexperience > 5 ? 'senior' : 'junior';
+        let col8 = document.createElement('td');
+        col8.textContent = "Delete";
+        col8.addEventListener("click", () => deleteRow(index));
+        row.append(col1, col2, col3, col4, col5, col6, col7, col8);
+        tbody.append(row);
     });
-    count();
-    calculateTotalSalary()
+    count()
+    document.getElementById('totalSalary').textContent = getTotalSalary();
+
 };
 
-const addEmployee = (e) => {
+const setData = (e) => {
     e.preventDefault();
     let data = {
         name: document.getElementById('name').value,
         jobrole: document.getElementById('jobrole').value,
         department: document.getElementById('department').value,
         salary: document.getElementById('salary').value,
-        contactemail: document.getElementById('contactemail').value,
-        workexperience: document.getElementById('workexperience').value,
+        email: document.getElementById('email').value,
+        workexperience: document.getElementById('workexperience').value
     };
-
-    employees.push(data);
-    displayEmployees();
+    employee.push(data);
+    displayData();
 };
 
-const deleteEmployee = (index) => {
-    employees.splice(index, 1);
-    displayEmployees();
+const deleteAllData = () => {
+    document.getElementById('TableBody').innerHTML = "";
+    employee = [];
+  
 };
 
-const deleteAllEmployees = () => {
-    employees = [];
-    displayEmployees();
+const deleteRow = (index) => {
+    employee.splice(index, 1);
+    console.log("Employee deleted at index", index, ". Updated employee list:", employee);
+    displayData();
 };
-
 const count = () => {
-    document.getElementById('totalEmployees').textContent = employees.length;
-    document.getElementById('totalSalary').textContent = calculateTotalSalary();
+    document.getElementById('totalEmployees').textContent = employee.length;
 };
-const calculateTotalSalary = () => {
+const getTotalSalary = () => {
     let totalSalary = 0;
-    employees.map(emp => {
-        totalSalary += +emp.salary; 
-    });
-    return totalSalary;
+    for (let i = 0; i < employee.length; i++) {
+        totalSalary = totalSalary + Number(employee[i].salary);
+    }
+    return totalSalary + ''; 
 };
-
-document.getElementById('employeeForm').addEventListener('submit', addEmployee);
-document.getElementById('deleteAll').addEventListener('click', deleteAllEmployees);
+document.getElementById('deleteAll').addEventListener("click", deleteAllData);
+document.getElementById('empdata').addEventListener("submit", setData);
