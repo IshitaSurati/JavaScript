@@ -4,36 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Evaluation</title>
+    <title>Employee Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="#form-section">
-    <form id="empData">
-        <h3>Hire a new Employee</h3>
-        <input type="text" id="name" placeholder="Name" required><br>
-        <select id="job-role" name="jobRole" required>
-            <option value="">Select job Role</option>
-            <option value="Manager">Manager</option>
-            <option value="Developer">Developer</option>
-            <option value="Designer">Designer</option>
-        </select><br>
-        <select id="department" name="department" required>
-            <option value="">Select Department</option>
-            <option value="HR">HR</option>
-            <option value="IT">IT</option>
-            <option value="Engineering">Engineering</option>
-        </select>
-        <input type="number" id="salary" name="salary" placeholder="Monthly salary" required>
-        <input type="number" id="work-experience" name="workExperience" placeholder="Pre work experience in year"
-            required>
-        <input type="email" id="contact-email" name="contactEmail" placeholder="contactEmail" required><br>
-        <button type="submit">Hire</button>
-        <button id="deleteAll">Delete All</button>
-    </form>
-</div>
-    <table id="employee-table">
+    <div id="form-section">
+        <form id="employeeForm">
+            <h3>Hire a new Employee</h3>
+            <input type="text" id="name" placeholder="Name" required>
+            <select id="jobrole" name="jobRole" required>
+                <option value="">Select job Role</option>
+                <option value="Manager">Manager</option>
+                <option value="Developer">Developer</option>
+                <option value="Designer">Designer</option>
+            </select>
+            <select id="department" name="department" required>
+                <option value="">Select Department</option>
+                <option value="HR">HR</option>
+                <option value="IT">IT</option>
+                <option value="Engineering">Engineering</option>
+            </select>
+            <input type="number" id="salary" name="salary" placeholder="Monthly salary" required>
+            <input type="email" id="contactemail" name="contactEmail" placeholder="Contact Email" required>
+            <input type="number" id="workexperience" name="workExperience" placeholder="Work Experience" required>
+            <button type="submit">Hire</button>
+        </form>
+    </div>
+
+    <table>
         <thead>
             <tr>
                 <th>Name</th>
@@ -43,15 +42,18 @@
                 <th>Contact Email</th>
                 <th>Work Experience</th>
                 <th>Role Type</th>
-                <th>Fire Employee</th>
+                <th id="deleteAll">Fire All</th>
             </tr>
         </thead>
-        <tbody id="tbody">
-        </tbody>
+        <tbody id="TableBody"></tbody>
     </table>
+
     <div class="count-section">
-        <p>Total Active Employees: <span id="total-employees">0</span></p>
+        <p>Total Employees: <span id="totalEmployees">0</span></p>
+        <p>Total Salary: <span id="totalSalary">0</span></p>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>

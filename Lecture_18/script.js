@@ -3,7 +3,7 @@ let students = [];
 
 const Display = () => {
     document.getElementById('tbody').innerHTML = "";
-    students.forEach((ele, index) => { // Added index parameter
+    students.map((ele, index) => { // Added index parameter
         let tr = document.createElement('tr');
         let td1 = document.createElement('td');
         td1.innerHTML = ele.grid;
