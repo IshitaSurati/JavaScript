@@ -71,7 +71,7 @@ console.log(temperatureString);
 
 // reverse
 let fruits = ['apple', 'banana', 'orange', 'grape'];
-console.log(fruits); 
+console.log(fruits);
 fruits.reverse();
 console.log(fruits);
 // Result: fruits = ['grape', 'orange', 'banana', 'apple']
