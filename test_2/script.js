@@ -1,3 +1,20 @@
+//navbar
+document.addEventListener("DOMContentLoaded", function() {
+    var toggler = document.querySelector(".navbar-toggler");
+    var collapse = document.querySelector(".navbar-collapse");
+
+    toggler.addEventListener("click", function() {
+        collapse.classList.toggle("show");
+    });
+
+    // Close toggle menu when clicked outside
+    document.addEventListener("click", function(event) {
+        if (!collapse.contains(event.target) && !toggler.contains(event.target)) {
+            collapse.classList.remove("show");
+        }
+    });
+});
+
 //countdown
 const StartWith = (number) => {
     return number < 10 ? '0' + number : number;
