@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   margin: 0;
   padding: 0;
@@ -5,47 +6,55 @@ body {
   font-family: "Fraunces", sans-serif;
   font-weight: 500;
   font-style: normal;
-  color: #333; 
+  background-color: #fff;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* Navbar */
+.navbar-brand {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 28px;
+  color: var(--primary-color); 
+}
+
 .navbar {
-  background-color: #fff; 
+  background-color: #ffbb33; 
 }
 
-.navbar-toggler {
-  border: none;
-}
-
-.navbar-toggler-icon {
-  background-color: #333; 
-}
-
-.navbar-brand img,
-.navbar-nav .nav-link i {
-  vertical-align: middle; 
-}
-
-.navbar-nav .nav-link {
-  color: #333; 
-}
-
-.navbar-nav .nav-link:hover {
-  color: #666; 
+.nav-link {
+  color: #93262A; 
 }
 
 /* Banner */
 .ban_img img {
   min-height: 290px;
   object-fit: cover;
-  filter: grayscale(0%); 
+  width: 100%;
+}
+
+/* Countdown Section */
+#timer {
+  background-color: #f8d7da; 
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+#countdown {
+  font-size: 2em;
+  color: #f70911; 
 }
 
 /* Product Section */
-.product-section {
+.product-section-1, .product-section-2 {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: space-around;
 }
 
@@ -57,28 +66,35 @@ body {
   width: calc(25% - 40px);
   box-sizing: border-box;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .product-card img {
-  max-width: 100%;
-  height: auto;
+  max-width: 200px;
+  height: 200px;
   border-radius: 4px;
 }
 
-.product-card h3 {
+.product-card h5 {
   margin: 10px 0;
-  color: #333; 
+  color: #333;
 }
 
 .product-card p {
   margin: 5px 0;
-  color: #666; 
+  color: #666;
+  font-size: small;
 }
 
 .product-card .price {
   font-size: 1.2em;
   font-weight: bold;
   color: #007BFF; 
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
 }
 
 .button-container button {
@@ -91,10 +107,14 @@ body {
 
 .button-container .buy-button {
   background-color: #28a745; 
+  width: 100px;
+  padding: 5px;
 }
 
 .button-container .delete-button {
   background-color: #dc3545; 
+  width: 100px;
+  padding: 5px;
 }
 
 .button-container button:hover {
@@ -108,13 +128,8 @@ form {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  margin: 0 auto;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333; 
+  margin: auto;
+  margin-top: 50px;
 }
 
 label {
@@ -129,7 +144,7 @@ input[type="number"],
 input[type="url"],
 input[type="file"],
 textarea {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 4px;
@@ -140,7 +155,7 @@ textarea {
   height: 100px;
 }
 
-button {
+form button {
   padding: 10px 20px;
   background: #007BFF;
   color: #fff;
@@ -153,5 +168,38 @@ button {
 }
 
 button:hover {
-  background: #0056b3;
+  background: #0056b3; 
+}
+
+h3 {
+  text-align: center;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .product-card {
+      width: calc(50% - 40px);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .product-card {
+      width: calc(100% - 40px);
+  }
+}
+
+/* Footer Section */
+.footer {
+  background-color: #f8d7da; 
+  padding: 20px 0;
+  text-align: center;
+  color: #000; 
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: #007BFF; 
 }
