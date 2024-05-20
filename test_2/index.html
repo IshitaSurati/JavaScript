@@ -60,19 +60,117 @@
         <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAxL3Jhd3BpeGVsX29mZmljZV8zOF9jdXRlX2NoaW5lc2VfZHJhZ29uX2JhY2tncm91bmRfY2FydG9vbl9pbGx1c18yMWRmODE0NC1iOGQzLTQzY2UtYWViMS0wMjRjY2VhZmRlMWRfMS5qcGc.jpg"
             alt="banner" width="100%" height="850px">
     </div>
+    <!-- countdown timer section -->
 
     <div class="container">
         <div id="products">
-            <p id="message">Deal End </p>
-            <div id="countdown" class="display-4"></div>
+            <p id="message">Deal End</p>
+            <div id="countdown" class="display-4">
+                <!-- display countdown timer -->
+            </div>
         </div>
-        <form id="productForm">
-            <input type="text" id="productName" name="productName" placeholder="Product Name" required>
-            <input type="text" id="productDescription" name="productDescription" placeholder="Product Description" required>
-            <button type="submit">Add Product</button>
-        </form>
     </div>
+    <!-- product section -->
+    <section class="product-section">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Product 1 Image">
+            <h3>Product 1</h3>
+            <p>Category: Electronics</p>
+            <p class="price">$99.99</p>
+            <p>High quality electronic product.</p>
+            <div class="button-container">
+                <button class="buy-button">Buy</button>
+                <button class="delete-button">Delete</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Product 2 Image">
+            <h3>Product 2</h3>
+            <p>Category: Home Appliance</p>
+            <p class="price">$49.99</p>
+            <p>Useful appliance for your home.</p>
+            <div class="button-container">
+                <button class="buy-button">Buy</button>
+                <button class="delete-button">Delete</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Product 3 Image">
+            <h3>Product 3</h3>
+            <p>Category: Clothing</p>
+            <p class="price">$19.99</p>
+            <p>Stylish and comfortable clothing.</p>
+            <div class="button-container">
+                <button class="buy-button">Buy</button>
+                <button class="delete-button">Delete</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Product 4 Image">
+            <h3>Product 4</h3>
+            <p>Category: Beauty</p>
+            <p class="price">$29.99</p>
+            <p>High quality beauty product.</p>
+            <div class="button-container">
+                <button class="buy-button">Buy</button>
+                <button class="delete-button">Delete</button>
+            </div>
+        </div>
+    </section>
+    <!-- form section-->
+    <form id="Form">
+        <h2>Product Details</h2>
 
+        <label for="Name">Product Name:</label>
+        <input type="text" id="Name" name="Name" placeholder="Product Name" required>
+
+        <label for="Category">Product Category:</label>
+        <input type="text" id="Category" name="Category" placeholder="Product Category" required>
+
+        <div class="radio-group">
+            <label>
+                <input type="radio" id="fileOption" name="imgOption" value="file" onclick="toggleImageInput()" checked>
+                Upload Product Image
+            </label>
+            <label>
+                <input type="radio" id="urlOption" name="imgOption" value="url" onclick="toggleImageInput()">
+                Provide Product Image URL
+            </label>
+        </div>
+
+        <input type="file" id="ImgFile" name="ImgFile" accept="image/*">
+        <input type="url" id="ImgUrl" name="ImgUrl" placeholder="Product Image URL" disabled>
+
+        <label for="price">Product Price:</label>
+        <input type="number" name="price" id="price" placeholder="Product Price" required>
+
+        <label for="Description">Product Description:</label>
+        <textarea id="Description" name="Description" placeholder="Product Description" required></textarea>
+
+        <button type="button" id="ADD" class="button bg-primary text-light">ADD</button>
+    </form>
+
+
+
+
+    <!-- modal -->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add to Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Product Add to cart successfully</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="./script.js"></script>
 

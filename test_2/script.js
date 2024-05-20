@@ -39,60 +39,20 @@ const updateCountdown = Countdown(targetTime);
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-//form
-document.getElementById('productForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
 
-    // Get the form data
-    const productName = document.getElementById('productName').value;
-    const productDescription = document.getElementById('productDescription').value;
 
-    // Create a new product element
-    const productElement = document.createElement('div');
-    productElement.className = 'product';
+//img input
+const toggleImageInput=()=> {
+    let fileInput = document.getElementById('ImgFile');
+    let urlInput = document.getElementById('ImgUrl');
+    let fileRadio = document.getElementById('fileOption');
+    let urlRadio = document.getElementById('urlOption');
 
-    // Create image element
-    const productImageElement = document.createElement('img');
-    productImageElement.src = 'placeholder.jpg'; // Replace 'placeholder.jpg' with the actual image URL
-    productImageElement.alt = productName + ' Image';
-
-    // Create product details container
-    const productDetails = document.createElement('div');
-    productDetails.className = 'product-details';
-
-    // Create product name element
-    const productNameElement = document.createElement('h3');
-    productNameElement.textContent = productName;
-
-    // Create product description element
-    const productDescriptionElement = document.createElement('p');
-    productDescriptionElement.textContent = productDescription;
-
-    // Create buy button
-    const buyButton = document.createElement('button');
-    buyButton.textContent = 'Buy';
-    buyButton.className = 'buy-button';
-
-    // Create delete button
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.className = 'delete-button';
-
-    // Append all elements to the product container
-    productDetails.appendChild(productNameElement);
-    productDetails.appendChild(productDescriptionElement);
-    productDetails.appendChild(buyButton);
-    productDetails.appendChild(deleteButton);
-
-    // Append image and product details container to the product element
-    productElement.appendChild(productImageElement);
-    productElement.appendChild(productDetails);
-
-    // Add the new product to the products section
-    const productsSection = document.getElementById('products');
-    productsSection.appendChild(productElement);
-
-    // Clear the form
-    document.getElementById('productForm').reset();
-});
-
+    if (fileRadio.checked) {
+        fileInput.disabled = false;
+        urlInput.disabled = true;
+    } else if (urlRadio.checked) {
+        fileInput.disabled = true;
+        urlInput.disabled = false;
+    }
+}
