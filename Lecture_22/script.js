@@ -1,25 +1,40 @@
-document.getElementById(".form").addEventListener("submit", (e) => {
-    e.preventDefult();
-    let data = {
-        name: document.querySelector("#name").value,
-        pswrd: document.querySelector("#pswrd").value,
+document.querySelector(".form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let user = {
+        // username: document.querySelector("#username").value,
+        age: document.querySelector("#age").value,
+        pswrd: document.querySelector("#pswrd").value
     }
     flag = false
-    if (data.name.length < 2 || data.name == null) {
-        document.querySelector("#name").style.border = "1px solid red"
-        console.log("invalid name");
-        flag = true
-    }
-    if (data.number.length!=8 || data.number.length==nll) {
+    // if (user.username.length < 2 || user.username == null) {
+    //     document.querySelector("#username").style.border = "1px solid red"
+    //     flag = true
+    // }
+    // else{
+    //     document.querySelector("#username").style.border = "1px solid green"
+    // }
+    if (user.pswrd.length != 10 || user.pswrd == null) {
         document.querySelector("#pswrd").style.border = "1px solid red"
-        console.log("invalid password");
         flag = true
     }
-    else{
-       document.querySelector("#pswrd").style.border = "1px solid green"
+    else {
+        document.querySelector("#pswrd").style.border = "1px solid green"
     }
     if (flag) {
         return
     }
-    console.log(data);
 })
+
+document.querySelector("#username").addEventListener("keypress", handleform)
+const handleform = (e) => {
+    if (e.key) {
+        username: document.querySelector("#username").value
+    }
+    if (user.username.length < 2 || user.username == null) {
+        document.querySelector("#username").style.border = "1px solid green"
+       Input.focus.style.border = "1px solid green"
+    }
+    else {
+        document.querySelector("#username").style.border = "1px solid red"
+    }
+}
