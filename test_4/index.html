@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banking System</title>
+    <style>
+        .product {
+            border: 2px solid black;
+            display: flex;
+        }
+
+        .items {
+            width: 300px;
+            height: 300px;
+            border: 1px solid grey;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        button {
+            padding: 5px;
+            color: azure;
+            background-color: blue;
+        }
+    </style>
 </head>
+
 <body>
     <form class="form">
         <input type="text" id="username" placeholder="Enter your name">
@@ -23,6 +51,31 @@
         <tbody id="tbody">
         </tbody>
     </table>
+    <div class="product">
+        <div class="items">
+            <div id="items-1">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/13/39/analog-watch-1869928_1280.jpg" alt="">
+                <h3>Price: <span class="price">500</span></h3>
+                <button class="buy-button">Buy Now</button>
+            </div>
+        </div>
+        <div class="items">
+            <div id="items-2">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/13/39/analog-watch-1869928_1280.jpg" alt="">
+                <h3>Price: <span class="price">600</span></h3>
+                <button class="buy-button">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="items">
+            <div id="items-3">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/13/39/analog-watch-1869928_1280.jpg" alt="">
+                <h3>Price: <span class="price">900</span></h3>
+                <button class="buy-button">Buy Now</button>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
-<script src="./script.js"></script>
+
 </html>

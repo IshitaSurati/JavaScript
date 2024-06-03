@@ -1,42 +1,54 @@
-class BankAccount{
-    constructor(Uname,Acnumber,DepositAmount){
-        this.Acnumber=Acnumber
-        this.Uname=Uname
-        this.DepositAmount
+class BankAccount {
+    constructor(Uname, Acnumber, DepositAmount) {
+        this.Acnumber = Acnumber;
+        this.Uname = Uname;
+        this.DepositAmount = DepositAmount;
     }
 }
-const Display=()=>{
+
+const bankAccounts = [];
+const Display = () => {
     document.getElementById('tbody').innerHTML = "";
-    BankAccount.map((ele, index) => { 
+    bankAccounts.forEach((ele, index) => {
         let tr = document.createElement('tr');
         let td1 = document.createElement('td');
-        td1.innerHTML = ele.AcNo;
+        td1.innerHTML = ele.Acnumber;
         let td2 = document.createElement('td');
-        td2.innerHTML = ele.username;
+        td2.innerHTML = ele.Uname;
         let td3 = document.createElement('td');
-        let DepositButton = document.createElement('button'); 
-       DepositButton.textContent = "Deposit"; 
-       DepositButton.addEventListener("click", () => { 
-          CutAmount(index); 
-        });
-        td3.appendChild(DepositButton);
-        tr.append(td1, td2, td3); 
+        td3.innerHTML = ele.DepositAmount;
+        tr.append(td1, td2, td3);
         document.getElementById("tbody").appendChild(tr);
     });
 }
 
-document.querySelector(".form").addEventListener("submit",(e)=>{
-    e.preventDefualt();
-   let data={
-        Acnumber:document.querySelector("#AcNo").value,
-        Uname:document.querySelector("#username").value,
-        DepositAmount:document.querySelector("#amount").value
+document.querySelector(".form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let data = new BankAccount(
+        document.querySelector("#username").value,
+        document.querySelector("#AcNo").value,
+        document.querySelector("#amount").value
+    );
+    bankAccounts.push(data);
+    Display();
+});
+
+const CutAmount = (index, price) => {
+    if (bankAccounts[index].DepositAmount >= price) {
+        bankAccounts[index].DepositAmount -= price;
+        Display();
+        alert(`Purchase successful! ${price}.`);
+    } else {
+        alert('No funds for this purchase.');
     }
-   BankAccount.push(data) 
-   Display()
+};
 
-})
-
-document.getElementById("amount").addEventListener("click",CutAmount=()=>{
-
-}); 
+document.querySelector(".buy-button").addEventListener("click", () => {
+    const price = document.querySelector(".price").innerText;
+    const accountIndex = 0;
+    if (bankAccounts.length > 0) {
+        CutAmount(accountIndex, price);
+    } else {
+        alert('No accounts available.');
+    }
+});
