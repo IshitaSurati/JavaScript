@@ -6,38 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banking System</title>
     <style>
+        /* Form styling */
+        .form {
+            margin-bottom: 20px;
+        }
+
+        .form input[type="text"],
+        .form input[type="number"],
+        .form input[type="submit"] {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form input[type="submit"] {
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form input[type="submit"]:hover {
+            background-color: darkblue;
+        }
+
+        /* Table styling */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Product section styling */
         .product {
-            border: 2px solid black;
             display: flex;
+            justify-content: space-around;
         }
 
         .items {
-            width: 300px;
+            width: 200px;
             height: 300px;
-            border: 1px solid grey;
+            border: 1px solid #ccc;
             border-radius: 5px;
             text-align: center;
             margin: 20px;
         }
 
-        img {
-            width: 200px;
-            height: 200px;
+        .items img {
+            width: 150px;
+            height: 150px;
         }
 
-        button {
-            padding: 5px;
-            color: azure;
+        .items h3 {
+            margin-top: 10px;
+        }
+
+        .buy-button {
+            padding: 5px 10px;
+            margin-top: 10px;
             background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buy-button:hover {
+            background-color: darkblue;
         }
     </style>
 </head>
 
 <body>
-    <form class="form">
-        <input type="text" id="username" placeholder="Enter your name">
-        <input type="number" name="number" id="AcNo" placeholder="Enter Number">
-        <input type="number" name="amount" id="amount" placeholder="Enter amount">
+    <form class="form" id="bankForm">
+        <input type="number" name="number" id="AcNo" placeholder="Enter Number" required>
+        <input type="text" id="username" placeholder="Enter your name" required>
+        <input type="number" name="amount" id="amount" placeholder="Enter amount" required>
         <input type="submit" value="Deposit">
     </form>
     <table border="2">
@@ -45,6 +101,7 @@
             <tr>
                 <th>Ac_Number</th>
                 <th>Username</th>
+                <th class="balance">Balance</th>
                 <th>Deposit_Amount</th>
             </tr>
         </thead>
@@ -56,24 +113,33 @@
             <div id="items-1">
                 <img src="https://cdn.pixabay.com/photo/2016/11/29/13/39/analog-watch-1869928_1280.jpg" alt="">
                 <h3>Price: <span class="price">500</span></h3>
-                <button class="buy-button">Buy Now</button>
+                <select class="account-select">
+                    <!-- Options will be dynamically populated here -->
+                </select>
+                <button class="buy-button" data-product-index="1">Buy Now</button>
             </div>
         </div>
         <div class="items">
             <div id="items-2">
                 <img src="https://cdn.pixabay.com/photo/2016/11/29/13/39/analog-watch-1869928_1280.jpg" alt="">
                 <h3>Price: <span class="price">600</span></h3>
-                <button class="buy-button">Buy Now</button>
+                <select class="account-select">
+                    <!-- Options will be dynamically populated here -->
+                </select>
+                <button class="buy-button" data-product-index="2">Buy Now</button>
             </div>
         </div>
-
         <div class="items">
             <div id="items-3">
                 <img src="https://cdn.pixabay.com/photo/2016/11/29/13/39/analog-watch-1869928_1280.jpg" alt="">
                 <h3>Price: <span class="price">900</span></h3>
-                <button class="buy-button">Buy Now</button>
+                <select class="account-select">
+                    <!-- Options will be dynamically populated here -->
+                </select>
+                <button class="buy-button" data-product-index="3">Buy Now</button>
             </div>
         </div>
+        <!-- Add more product items as needed -->
     </div>
     <script src="./script.js"></script>
 </body>

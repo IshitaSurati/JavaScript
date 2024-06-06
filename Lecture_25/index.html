@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Calculator</title>
+    <style>
+        input[type="number"] {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shape Calculator</h1>
+    <div>
+        <label for="shape">Select Shape:</label>
+        <select id="shape" onchange="updateInputs()">
+            <option value="circle">Circle</option>
+            <option value="square">Square</option>
+            <option value="triangle">Triangle</option>
+        </select>
+    </div>
+    <div>
+        <label for="input1">Dimension 1:</label>
+        <input type="number" id="input1">
+    </div>
+    <div id="input2-container">
+        <label for="input2">Dimension 2:</label>
+        <input type="number" id="input2">
+    </div>
+    <div>
+        <button onclick="calculateArea()">Calculate Area</button>
+    </div>
+    <div>
+        <label for="result">Result:</label>
+        <span id="result"></span>
+    </div>
+
+    <script>
+        // Abstract class: Shape
+        const Shape = () => {
+            throw new Error("Cannot instantiate abstract class");
+        };
+
+        // Subclass: Circle
+        const Circle = () => {
+            const radius = () => parseFloat(document.getElementById("input1").value);
+            const calculateArea = () => Math.PI * radius() ** 2;
+            return { calculateArea };
+        };
+
+        // Subclass: Square
+        const Square = () => {
+            const sideLength = () => parseFloat(document.getElementById("input1").value);
+            const calculateArea = () => sideLength() ** 2;
+            return { calculateArea };
+        };
+
+        // Subclass: Triangle
+        const Triangle = () => {
+            const base = () => parseFloat(document.getElementById("input1").value);
+            const height = () => parseFloat(document.getElementById("input2").value);
+            const calculateArea = () => (base() * height()) / 2;
+            return { calculateArea };
+        };
+
+        // Factory function: ShapeFactory
+        const ShapeFactory = {
+            createShape: (shapeType) => {
+                switch (shapeType) {
+                    case "circle":
+                        return Circle();
+                    case "square":
+                        return Square();
+                    case "triangle":
+                        document.getElementById("input2-container").innerHTML = `<label for="input2">Height:</label><input type="number" id="input2">`;
+                        return Triangle();
+                    default:
+                        throw new Error("Invalid shape type");
+                }
+            }
+        };
+
+        // UI Functions
+        const updateInputs = () => {
+            const shapeType = document.getElementById("shape").value;
+            const input2Container = document.getElementById("input2-container");
+            input2Container.innerHTML = "";
+            if (shapeType === "triangle") {
+                input2Container.innerHTML = `<label for="input2">Height:</label><input type="number" id="input2">`;
+            }
+        };
+
+        const calculateArea = () => {
+            const shapeType = document.getElementById("shape").value;
+            const shape = ShapeFactory.createShape(shapeType);
+            const area = shape.calculateArea();
+            document.getElementById("result").textContent = area;
+        };
+    </script>
+</body>
+</html>

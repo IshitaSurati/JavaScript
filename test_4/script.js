@@ -1,54 +1,111 @@
 class BankAccount {
-    constructor(Uname, Acnumber, DepositAmount) {
-        this.Acnumber = Acnumber;
-        this.Uname = Uname;
-        this.DepositAmount = DepositAmount;
+    constructor(username, accountNumber, balance) {
+        this.username = username;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    deposit(amount) {
+        this.balance += amount;
+    }
+
+    withdraw(amount) {
+        if (this.balance >= amount) {
+            this.balance -= amount;
+            return true;
+        }
+        return false;
     }
 }
 
-const bankAccounts = [];
-const Display = () => {
-    document.getElementById('tbody').innerHTML = "";
-    bankAccounts.forEach((ele, index) => {
-        let tr = document.createElement('tr');
-        let td1 = document.createElement('td');
-        td1.innerHTML = ele.Acnumber;
-        let td2 = document.createElement('td');
-        td2.innerHTML = ele.Uname;
-        let td3 = document.createElement('td');
-        td3.innerHTML = ele.DepositAmount;
-        tr.append(td1, td2, td3);
-        document.getElementById("tbody").appendChild(tr);
-    });
+class UI {
+    constructor() {
+        this.bankAccounts = [];
+    }
+
+    displayAccounts() {
+        const tbody = document.getElementById('tbody');
+        tbody.innerHTML = "";
+        this.bankAccounts.forEach((account, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${account.accountNumber}</td>
+                <td>${account.username}</td>
+                <td class="balance" style="display: none;">${account.balance}</td>
+                <td class="deposit-amount" style="display: none;"></td>
+                <td><button class="show-balance" data-index="${index}">Show Balance</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    addAccount(username, accountNumber, initialDeposit) {
+        const account = new BankAccount(username, accountNumber, initialDeposit);
+        this.bankAccounts.push(account);
+        this.displayAccounts();
+    }
+
+    toggleBalance(index) {
+        const depositTd = document.querySelector(`#tbody tr:nth-child(${index + 1}) .deposit-amount`);
+        const balanceTd = document.querySelector(`#tbody tr:nth-child(${index + 1}) .balance`);
+        if (depositTd && balanceTd) {
+            if (depositTd.textContent) {
+                depositTd.textContent = "";
+                depositTd.style.display = 'none';
+            } else {
+                depositTd.textContent = balanceTd.textContent;
+                depositTd.style.display = 'table-cell';
+            }
+        }
+    }
+
+    buyProduct(index, price, accountIndex) {
+        const account = this.bankAccounts[accountIndex];
+        if (account.withdraw(price)) {
+            this.displayAccounts();
+            alert(`Purchase successful! Balance remaining: ${account.balance}`);
+        } else {
+            alert('Insufficient funds!');
+        }
+    }
+
+    populateAccountOptions() {
+        const accountSelects = document.querySelectorAll('.account-select');
+        accountSelects.forEach((select) => {
+            select.innerHTML = '';
+            this.bankAccounts.forEach((account, index) => {
+                const option = document.createElement('option');
+                option.text = `${account.accountNumber} - ${account.username}`;
+                option.value = index;
+                select.appendChild(option);
+            });
+        });
+    }
 }
+
+const ui = new UI();
 
 document.querySelector(".form").addEventListener("submit", (e) => {
     e.preventDefault();
-    let data = new BankAccount(
-        document.querySelector("#username").value,
-        document.querySelector("#AcNo").value,
-        document.querySelector("#amount").value
-    );
-    bankAccounts.push(data);
-    Display();
+    const username = document.querySelector("#username").value;
+    const accountNumber = document.querySelector("#AcNo").value;
+    const initialDeposit = parseFloat(document.querySelector("#amount").value);
+    ui.addAccount(username, accountNumber, initialDeposit);
 });
 
-const CutAmount = (index, price) => {
-    if (bankAccounts[index].DepositAmount >= price) {
-        bankAccounts[index].DepositAmount -= price;
-        Display();
-        alert(`Purchase successful! ${price}.`);
-    } else {
-        alert('No funds for this purchase.');
-    }
-};
-
-document.querySelector(".buy-button").addEventListener("click", () => {
-    const price = document.querySelector(".price").innerText;
-    const accountIndex = 0;
-    if (bankAccounts.length > 0) {
-        CutAmount(accountIndex, price);
-    } else {
-        alert('No accounts available.');
+document.getElementById('tbody').addEventListener('click', (e) => {
+    if (e.target.classList.contains('show-balance')) {
+        const index = parseInt(e.target.dataset.index);
+        ui.toggleBalance(index);
     }
 });
+
+document.querySelectorAll(".buy-button").forEach((button, index) => {
+    button.addEventListener("click", () => {
+        const price = parseFloat(button.parentElement.querySelector(".price").innerText);
+        const accountIndex = parseInt(button.parentElement.querySelector(".account-select").value);
+        ui.buyProduct(index, price, accountIndex);
+    });
+});
+
+ui.populateAccountOptions();

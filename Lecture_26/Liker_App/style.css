@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.logo {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.instagram-text {
+    font-family: 'Billabong', sans-serif;
+}
+
+.icons {
+    display: flex;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 20px;
+}
+
+.story-section {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.user-icon {
+    border-radius: 50%;
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+}
+
+.posts {
+    margin-top: 20px;
+}
+.post {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(100% - 40px); 
+    max-width: 400px; 
+    margin: 20px auto;
+}
+
+.post-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.follow-btn {
+    background-color: #3897f0;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.post-actions {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.action-btn {
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent; 
+}
+
+.count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8em;
+}
+
+.story-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px; 
+}
+
+.user-infostory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.user-iconstory {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    margin-bottom: 5px; 
+    border: 3px solid red;
+}
+
+.usernamestory {
+    font-size: 12px; 
+    color: #000; 
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .icons {
+        margin-top: 10px;
+    }
+    .post {
+        width: calc(100% - 20px); 
+        margin: 10px auto;
+    }
+}
