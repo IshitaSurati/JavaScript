@@ -1,6 +1,6 @@
 document.addEventListener('click', () => {
     let likeCount = localStorage.getItem("likeCount") || 0;
-    let commentCount = localStorage.getItem("commentCount") || 0;
+    let commentCount = localStorage.getItem("commentCount")|| 0;
     let shareCount = localStorage.getItem("shareCount") || 0;
     let Following = localStorage.getItem("Following") === 'true';
     let MsgIconcount = localStorage.getItem("MsgIconcount") || 0;
