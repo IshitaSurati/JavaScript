@@ -22,37 +22,29 @@ document.addEventListener('click', () => {
             likeCount++;
             LikeIcon.innerHTML = likeCount;
             localStorage.setItem("likeCount", likeCount);
-            showAlert("You liked this post.");
+            alert("You liked this post.");
         } else if (count === 'comment') {
             commentCount++;
             CmtIcon.innerHTML = commentCount;
             localStorage.setItem("commentCount", commentCount);
-            showAlert("You commented on this post.");
+            alert("You commented on this post.");
         } else if (count === 'share') {
             shareCount++;
             ShareIcon.innerHTML = shareCount;
             localStorage.setItem("shareCount", shareCount);
-            showAlert("You shared this post.");
+            alert("You shared this post.");
         } else if (count === 'follow') {
             Following = !Following;
             followBtn.textContent = Following ? 'Following' : 'Follow';
             localStorage.setItem("Following", Following);
-            showAlert(Following ? "You are now following this user." : "You unfollowed this user.");
+            alert(Following ? "You are now following this user." : "You unfollowed this user.");
         } else if (count === 'msg') {
             MsgIconcount++;
             MsgIcon.innerHTML = MsgIconcount;
             localStorage.setItem("MsgIconcount", MsgIconcount);
-            showAlert("You opened the message box.");
+            alert("You opened the message box.");
         }
     };
-
-    const showAlert = (message) => {
-        alert(message);
-        setTimeout(() => {
-            document.querySelector('.alert').style.display = 'none';
-        }, 2000);
-    };
-
     document.getElementById('likeBtn').addEventListener('click', () => likerApp('like'));
     document.getElementById('commentBtn').addEventListener('click', () => likerApp('comment'));
     document.getElementById('shareBtn').addEventListener('click', () => likerApp('share'));
