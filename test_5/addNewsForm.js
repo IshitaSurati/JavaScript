@@ -1,8 +1,7 @@
-let News = JSON.parse(localStorage.getItem('News')) || [];
-
 const handleData = (e) => {
     e.preventDefault();
-    let news = {
+    const News = JSON.parse(localStorage.getItem("News")) || [];
+    const news = {
         title: document.getElementById("title").value,
         img: document.getElementById("img").value,
         description: document.getElementById("description").value,

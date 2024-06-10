@@ -8,16 +8,16 @@
 </head>
 <body>
     <form id="form">
-        <input type="text" name="title" id="title" placeholder="Enter Title">
-        <input type="url" name="img" id="img" placeholder="Add img"> 
-        <select name="country" id="country">
-            <option value="" disabled selected>Enter Country</option>
+        <input type="text" name="title" id="title" placeholder="Enter Title" required>
+        <input type="url" name="img" id="img" placeholder="Add Image URL" required> 
+        <select name="country" id="country" required>
+            <option value="" disabled selected>Select Country</option>
             <option value="India">India</option>
             <option value="Australia">Australia</option>
             <option value="Canada">Canada</option>
             <option value="America">America</option>
         </select>
-        <input type="text" name="description" id="description" placeholder="Enter Description">
+        <input type="text" name="description" id="description" placeholder="Enter Description" required>
         <button type="submit">Submit</button>
     </form>
     <script src="./addNewsForm.js"></script>

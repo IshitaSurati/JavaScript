@@ -1,58 +1,43 @@
-let News = JSON.parse(localStorage.getItem('News')) || [];
+document.addEventListener("DOMContentLoaded", () => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-const uiMaker = (data) => {
-    const NewsContainer = document.getElementById("News");
-    NewsContainer.innerHTML = "";
+    if (loggedInUser) {
+        document.getElementById("userimg").src = loggedInUser.imgUrl;
+        document.getElementById("info").innerHTML = `
+            <p>Name: ${loggedInUser.fullName}</p>
+            <p>Email: ${loggedInUser.email}</p>
+            <p>Country: ${loggedInUser.country}</p>
+        `;
+    }
 
-    data.forEach((ele, index) => {
-        let div = document.createElement('div');
-        div.className = 'news-card';
+    const News = JSON.parse(localStorage.getItem("News")) || [];
+    const newsContainer = document.getElementById("News");
 
-        let img = document.createElement('img');
-        img.src = ele.img;
+    News.forEach(news => {
+        const newsCard = document.createElement("div");
+        newsCard.className = "news-card";
 
-        let title = document.createElement('h4');
-        title.innerHTML = ele.title;
+        newsCard.innerHTML = `
+            <img src="${news.img}" alt="${news.title}">
+            <h3>${news.title}</h3>
+            <p>${news.description}</p>
+            <p>Country: ${news.country}</p>
+            <div class="button-container">
+                <button class="like">Like (${news.likes})</button>
+                <button class="share">Share</button>
+            </div>
+        `;
 
-        let country = document.createElement('h6');
-        country.innerHTML = ele.country;
-        
-        let description = document.createElement('p');
-        description.innerHTML = `Description: ${ele.description}`;
+        newsCard.querySelector(".like").addEventListener("click", () => {
+            news.likes++;
+            localStorage.setItem("News", JSON.stringify(News));
+            newsCard.querySelector(".like").innerText = `Like (${news.likes})`;
+        });
 
-        let buttonContainer = document.createElement('div');
-        buttonContainer.className = 'button-container';
+        newsCard.querySelector(".share").addEventListener("click", () => {
+            alert(`News shared: ${news.title}`);
+        });
 
-        let likeButton = document.createElement('button');
-        likeButton.className = 'like';
-        likeButton.innerHTML = `Like (${ele.likes || 0})`;
-        likeButton.addEventListener('click', () => handleLike(index));
-
-        let shareButton = document.createElement('button');
-        shareButton.className = 'share';
-        shareButton.innerHTML = `Share`;
-        shareButton.addEventListener('click', () => handleShare(index));
-        
-        buttonContainer.append(likeButton, shareButton);
-        div.append(img, title, country, description, buttonContainer);
-        NewsContainer.append(div);
+        newsContainer.appendChild(newsCard);
     });
-};
-
-const handleLike = (index) => {
-    News[index].likes = (News[index].likes || 0) + 1;
-    localStorage.setItem("News", JSON.stringify(News));
-    uiMaker(News);
-};
-
-const handleShare = (index) => {
-    alert('News shared successfully!');
-};
-
-const handleLinkClick = (index) => {
-    News[index].clicks = (News[index].clicks || 0) + 1;
-    localStorage.setItem("News", JSON.stringify(News));
-    uiMaker(News);
-};
-
-uiMaker(News);
+});
