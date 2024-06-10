@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 12px;
+            width: calc(100% - 24px); 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s; 
+        }
+
+        input:focus {
+            border-color: #28a745; 
+            outline: none; 
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 12px;
+            width: calc(100% - 24px); 
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./form.html">Add Product</a>
+    </nav>
+
+    <section>
+        <h1>Add New Product</h1>
+        <form id="form">
+            <input type="text" id="title" placeholder="Enter Title" required>
+            <input type="number" id="price" placeholder="Enter Price" required>
+            <input type="url" id="img" placeholder="Enter Image URL" required>
+            <input type="text" id="category" placeholder="Enter Category" required>
+            <button type="submit" id="add">Add Product</button>
+        </form>
+    </section>
+ <script src="./form.js"></script>
+</body>
+
+</html>

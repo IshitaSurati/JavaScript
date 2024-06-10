@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#head {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+}
+
+#UserInfo {
+    width: 20%; 
+    background-color: rgba(243, 241, 237, 0.937);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#userimg {
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+#info {
+    width: 90%;
+    text-align: center;
+    padding: 10px;
+}
+
+#header-content {
+    width: 80%; /* 80% of the width */
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+}
+
+#navbar, #Subnavbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#navbar {
+    background-color: beige;
+    padding: 10px 0;
+}
+
+#Subnavbar {
+    background-color: rgb(249, 238, 224);
+    padding: 10px 0;
+}
+
+#navbar a, #Subnavbar a {
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 15px;
+    padding: 10px;
+}
+
+#navbar a:hover, #Subnavbar a:hover {
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#News {
+    flex: 1;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.news-card {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.news-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button.like, button.share, button.link {
+    background-color: #f0f0f0;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+}
+
+button.like:hover, button.share:hover, button.link:hover {
+    background-color: #e0e0e0;
+}
