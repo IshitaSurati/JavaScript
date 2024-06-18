@@ -81,16 +81,6 @@ nav img {
 }
 
 /* Styles for login and signup pages */
-.form-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    margin: 0;
-    padding: 0;
-}
-
 .card {
     border: none;
     border-radius: 1rem;
