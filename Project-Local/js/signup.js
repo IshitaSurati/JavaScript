@@ -1,8 +1,6 @@
 import navbar from "../components/Navbar.js";
 import getValue from "../components/helper.js";
 
-
-
 const handleData = (e) => {
     e.preventDefault();
     let user = {
@@ -12,11 +10,9 @@ const handleData = (e) => {
     }
 
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("isLogin", true)
-    window.location.href = "/Project-Local/"
-
+    localStorage.setItem("isLogin", true);
+    window.location.href = "/Project-Local/";
 }
 
-
-document.getElementById("Userdata").addEventListener("submit", handleData)
-document.getElementById("navbar").innerHTML = navbar()
+document.getElementById("Userdata").addEventListener("submit", handleData);
+document.getElementById("navbar").innerHTML = navbar();

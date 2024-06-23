@@ -63,4 +63,4 @@ const navbar=(login="login",signup="signup")=>{
 
 
 
-export default navbar
+export default navbar;

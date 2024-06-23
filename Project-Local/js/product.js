@@ -1,72 +1,90 @@
+// product.js
+
 import navbar from "../components/Navbar.js";
 import getValue from "../components/helper.js";
-document.getElementById("navbar").innerHTML = navbar()
 
-let proudcts = JSON.parse(localStorage.getItem("products")) || []
+// Set up navbar
+document.getElementById("navbar").innerHTML = navbar();
 
-//display UI
-const Mapper = (data) => {
-    document.getElementById("productList").innerHTML = ""
-    data.map((ele) => {
-        let img = document.createElement("img")
-        img.src = ele.img
-        let title = document.createElement("h3")
-        title.innerHTML = ele.title
-        let price = document.createElement("p")
-        price.innerHTML = ele.price
-        let category = document.createElement("p")
-        category.innerHTML = ele.category
-        let btn = document.createElement("button")
-        btn.innerHTML = "Buy"
-        let div = document.createElement("div")
-        div.append(img, title, price, category, btn)
-        document.getElementById("productList").append(div)
-    })
-}
+// Retrieve products and cartList from localStorage
+let products = JSON.parse(localStorage.getItem("products")) || [];
+let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
 
-Mapper(proudcts)
+// Function to check if product exists in cart
+const isExistsInCart = (id) => {
+    return cartList.some(item => item.id === id);
+};
 
-
-
-//sorting
-const HandleSort = (orderBy) => {
-    if (orderBy == "LTH") {
-        let temp = proudcts.sort((a, b) => a.price - b.price)
-        Mapper(temp)
-        console.log(temp);
+// Function to handle adding product to cart
+const handleCartList = (product) => {
+    if (isExistsInCart(product.id)) {
+        cartList = cartList.map(item => {
+            if (item.id === product.id) {
+                item.qty += 1;
+            }
+            return item;
+        });
+        alert("Quantity updated in cart.");
+    } else {
+        cartList.push({ ...product, qty: 1 });
+        alert("Product added to cart.");
     }
-    else {
-        let temp = proudcts.sort((a, b) => b.price - a.price)
-        console.log(temp);
-        Mapper(temp)
+    localStorage.setItem("cartList", JSON.stringify(cartList));
+};
+
+// Function to display products on the page
+const displayProducts = (products) => {
+    const productList = document.getElementById("productList");
+    productList.innerHTML = "";
+    products.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("product-item");
+
+        const img = document.createElement("img");
+        img.src = product.img;
+        img.alt = product.title;
+        img.classList.add("card-img-top");
+
+        const title = document.createElement("h3");
+        title.textContent = product.title;
+
+        const price = document.createElement("p");
+        price.textContent = `Price: $${product.price}`;
+
+        const category = document.createElement("p");
+        category.textContent = `Category: ${product.category}`;
+
+        const btnBuy = document.createElement("button");
+        btnBuy.textContent = "Buy";
+        btnBuy.addEventListener("click", () => handleCartList(product));
+
+        card.append(img, title, price, category, btnBuy);
+        productList.appendChild(card);
+    });
+};
+
+// Sorting products by price (Low to High or High to Low)
+const sortProducts = (orderBy) => {
+    if (orderBy === "LTH") {
+        products.sort((a, b) => a.price - b.price);
+    } else {
+        products.sort((a, b) => b.price - a.price);
     }
+    displayProducts(products);
+};
 
-}
+// Filter products by category
+const filterProducts = (category) => {
+    const filteredProducts = products.filter(product => product.category === category);
+    displayProducts(filteredProducts);
+};
 
-//filter
-const handleFilter = (category) => {
-    let temp = proudcts.filter((ele) => ele.category == category)
-    Mapper(temp)
+// Handling initial display of products
+displayProducts(products);
 
-}
-
-// searching
-const handleSearch = (value) => {
-    let temp = proudcts.filter((ele) => ele.title.includes(value))
-    Mapper(temp)
-}
-const handleSearchData = (e) => {
-    e.preventDefault()
-
-    let value = getValue("searchValue")
-
-  handleSearch(value)
-
-}
-
-document.getElementById("searching").addEventListener("submit", handleSearchData)
-document.getElementById("LTH").addEventListener("click", () => HandleSort("LTH"))
-document.getElementById("HTL").addEventListener("click", () => HandleSort("HTL"))
-document.getElementById("men").addEventListener("click", () => handleFilter("men"))
-document.getElementById("women").addEventListener("click", () => handleFilter("women"))
-document.getElementById("kids").addEventListener("click", () => handleFilter("kids"))
+// Event listeners for sorting and filtering buttons
+document.getElementById("LTH").addEventListener("click", () => sortProducts("LTH"));
+document.getElementById("HTL").addEventListener("click", () => sortProducts("HTL"));
+document.getElementById("men").addEventListener("click", () => filterProducts("Men"));
+document.getElementById("women").addEventListener("click", () => filterProducts("Women"));
+document.getElementById("kids").addEventListener("click", () => filterProducts("Kids"));
