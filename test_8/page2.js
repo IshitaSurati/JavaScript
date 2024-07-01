@@ -1,17 +1,6 @@
-const getProductDetails = async () => {
-    const productId = localStorage.getItem('selectedProductId');
-    if (!productId) {
-        document.getElementById("product-details").innerHTML = "<p>Product not found.</p>";
-        return;
-    }
-        let req = await fetch(`https://dummyjson.com/products/${productId}`);
-        let product = await req.json();
-        displayProductDetails(product);
-        console.error("Error fetching product details:", error);
-        document.getElementById("product-details").innerHTML = "<p>Product details could not be loaded.</p>";
-};
+const Displayid = localStorage.getItem("Id");
 
-const displayProductDetails = (product) => {
+const Display = (product) => {
     const container = document.getElementById("product-details");
     container.innerHTML = `
         <div class="text-center">
@@ -24,4 +13,12 @@ const displayProductDetails = (product) => {
         </div>
     `;
 };
-getProductDetails();
+
+const productData = async (id) => {
+    let req = await fetch(`https://dummyjson.com/products/${id}`);
+    let product = await req.json();
+    console.log(product);
+    Display(product);
+};
+productData(Displayid);
+

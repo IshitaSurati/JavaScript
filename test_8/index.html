@@ -12,22 +12,22 @@
     <div class="container-fluid vh-100">
         <div class="row h-100">
             <div class="col-3 bg-light border-end">
-                <form class="d-flex mb-3" role="search">
-                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex mb-3" role="search" id="search-form">
+                    <input id="searchValue" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" id="searching">Search</button>
                 </form>
                 <ul type="none" id="sorting-options">
                     <li id="htl">High To Low</li>
                     <li id="lth">Low To High</li>
                 </ul>
-                    <div id="filter" class="mt-3">
-                        <h5>All Category</h5>
-                        <button class="btn" id="beauty">beauty</button><br>
-                        <button class="btn " id="fragrances">fragrances</button><br>
-                        <button class="btn " id="furniture">furniture</button><br>
-                        <button class="btn " id="groceries">groceries</button><br>
+                <div id="filter" class="mt-3">
+                    <h5>All Category</h5>
+                    <button class="btn" id="beauty">beauty</button><br>
+                    <button class="btn" id="fragrances">fragrances</button><br>
+                    <button class="btn" id="furniture">furniture</button><br>
+                    <button class="btn" id="groceries">groceries</button><br>
                 </div>
-                </div>
+            </div>
             <div class="col-9 bg-white border-start" id="data">
                 <!-- Products added dynamically -->
             </div>
