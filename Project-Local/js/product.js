@@ -88,3 +88,10 @@ document.getElementById("HTL").addEventListener("click", () => sortProducts("HTL
 document.getElementById("men").addEventListener("click", () => filterProducts("Men"));
 document.getElementById("women").addEventListener("click", () => filterProducts("Women"));
 document.getElementById("kids").addEventListener("click", () => filterProducts("Kids"));
+
+
+// const handleSearch = (value) => {
+//     const searchValue = value.toLowerCase();
+//     const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchValue));
+//     displayProducts(filteredProducts);
+// }
