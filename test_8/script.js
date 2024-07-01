@@ -1,18 +1,15 @@
 let products = [];
 
 const getData = async () => {
-    try {
-        let req = await fetch("https://dummyjson.com/products/");
-        if (!req.ok) {
-            throw new Error("Failed to fetch products.");
-        }
+        let req = await fetch("https://dummyjson.com/products");
         let res = await req.json();
-        products = res;
+        products = res.products;
         displayProducts(products);
-    } catch (error) {
         console.error("Error fetching products:", error);
-    }
-}
+        const dataContainer = document.getElementById("data");
+        dataContainer.innerHTML = "<p>Error fetching products. Please try again later.</p>";
+    
+};
 
 const displayProducts = (products) => {
     const dataContainer = document.getElementById("data");
@@ -21,39 +18,48 @@ const displayProducts = (products) => {
     const row = document.createElement('div');
     row.classList.add('row', 'gy-3');
 
-    products.forEach(product => {
-        let col = document.createElement('div');
-        col.classList.add('col-md-6');
+    if (Array.isArray(products) && products.length > 0) {
+        products.forEach(product => {
+            let col = document.createElement('div');
+            col.classList.add('col-md-6');
 
-        let div = document.createElement('div');
-        div.classList.add('product', 'p-3', 'border', 'rounded', 'h-100');
+            let div = document.createElement('div');
+            div.classList.add('product', 'p-3', 'border', 'rounded', 'h-100');
+            div.onclick = () => {
+                localStorage.setItem('selectedProductId', product.id);
+                window.location.href = 'page2.html';
+            };
 
-        let img = document.createElement("img");
-        img.src = product.image;
-        img.alt = product.title;
-        img.classList.add('img-fluid', 'mb-3');
+            let img = document.createElement("img");
+            img.src = product.thumbnail;
+            img.alt = product.title;
+            img.classList.add('img-fluid', 'b-3');
 
-        let title = document.createElement("h5");
-        title.textContent = product.title;
+            let title = document.createElement("h5");
+            title.textContent = product.title;
 
-        let price = document.createElement("p");
-        price.textContent = `Price: $${product.price}`;
+            let price = document.createElement("p");
+            price.textContent = `Price: $${product.price}`;
 
-        let buyButton = document.createElement("button");
-        buyButton.textContent = "Buy";
-        buyButton.classList.add('btn', 'btn-primary');
-        buyButton.onclick = () => {
-            localStorage.setItem('selectedProductId', product.id);
-            window.location.href = 'page2.html';
-        };
+            let category = document.createElement("p");
+            category.textContent = `Category: ${product.category}`;
 
-        div.append(img, title, price, buyButton);
-        col.append(div);
+            let buyButton = document.createElement("button");
+            buyButton.textContent = "Buy";
+            buyButton.classList.add('btn', 'btn-primary');
+            div.append(img, title, price, category, buyButton);
+            col.append(div);
+            row.append(col);
+        });
+    } else {
+        const col = document.createElement('div');
+        col.classList.add('col');
+        col.innerHTML = "<p>No products found.</p>";
         row.append(col);
-    });
+    }
 
     dataContainer.append(row);
-}
+};
 
 const handleSort = (orderBy) => {
     let sortedProducts = [...products];
@@ -63,44 +69,31 @@ const handleSort = (orderBy) => {
         sortedProducts.sort((a, b) => b.price - a.price);
     }
     displayProducts(sortedProducts);
-}
+};
 
-const handleFilter = (category) => {
-    let filteredProducts = [];
-    if (category === "all") {
-        filteredProducts = products; 
-    } else if (category === "makeup") {
-        filteredProducts = products.filter(product => product.category === "makeup");
-    } else {
-        filteredProducts = products.filter(product => product.category === category);
-    }
+const filterProducts = (category) => {
+    const filteredProducts = products.filter(product => product.category === category);
     displayProducts(filteredProducts);
-}
+};
+
 
 const handleSearch = (value) => {
     const searchValue = value.toLowerCase();
     const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchValue));
     displayProducts(filteredProducts);
-}
-
-const handleSearchData = (e) => {
-    e.preventDefault();
-    const value = getValue("search-input");
-    handleSearch(value);
-}
+};
 
 const handleInput = (e) => {
     const value = e.target.value;
     handleSearch(value);
-}
-
-const getValue = (id) => document.getElementById(id).value;
+};
 
 document.getElementById("htl").addEventListener("click", () => handleSort("htl"));
 document.getElementById("lth").addEventListener("click", () => handleSort("lth"));
-document.querySelectorAll("#filter-options li").forEach(item => {
-    item.addEventListener("click", (e) => handleFilter(e.target.id));
-});
+document.getElementById("beauty").addEventListener("click", () => filterProducts("beauty"));
+document.getElementById("fragrances").addEventListener("click", () => filterProducts("fragrances"));
+document.getElementById("furniture").addEventListener("click", () => filterProducts("furniture"));
+document.getElementById("groceries").addEventListener("click", () => filterProducts("groceries"));
 document.getElementById("search-input").addEventListener("input", handleInput);
 
 getData();
