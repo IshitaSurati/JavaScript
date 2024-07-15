@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tourist Website</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Places</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/test_7/css/style.css">
 </head>
+
 <body>
-  <div class="container-fluid">
-    <div id="navbar">
-      <!-- append nav from js -->
+    <div id="navbar"></div>
+
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="btn-group" role="group">
+                    <h5 class="mb-1">Sort by Likes</h5>
+                    <button id="likesLTH" class="btn btn-outline-primary">Low to High</button>
+                    <button id="likesHTL" class="btn btn-outline-primary">High to Low</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group" role="group">
+                    <h5 class="mb-1">Sort by Cost</h5>
+                    <button id="priceLTH" class="btn btn-outline-secondary">Low to High</button>
+                    <button id="priceHTL" class="btn btn-outline-secondary">High to Low</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <form id="search-form" class="mb-4 search-box">
+            <input id="searchValue" type="text" placeholder="Search products..." class="form-control me-2">
+            <button class="btn btn-outline-success search-button" type="submit">
+                <i class="fas fa-search"></i>
+                <span class="sr-only">Search</span>
+            </button>
+        </form>
+
+        <div id="productList" class="row"></div>
     </div>
-    <div id="filters">
-      <button class="btn btn-info" id="LTH">Price: Low to High</button>
-      <button class="btn btn-info" id="HTL">Price: High to Low</button>
-      <button class="btn btn-info" id="like">Sort by Likes</button>
-      <button class="btn btn-info" id="share">Sort by Shares</button>
-    </div>
-    <div id="placeList" class="row"></div>
     
-  </div>
-  <script src="./js/script.js" type="module"></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module" src="/test_7/js/script.js"></script>
 </body>
+
 </html>

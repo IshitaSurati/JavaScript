@@ -22,5 +22,5 @@ const displayBooks = (books) => {
 };
 
 window.onload = () => {
-    displayBooks(bookmarkList);
+    displayBooks(books);
 };

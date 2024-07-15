@@ -43,6 +43,7 @@ class UI {
         const account = new BankAccount(username, accountNumber, initialDeposit);
         this.bankAccounts.push(account);
         this.displayAccounts();
+        this.populateAccountOptions();
     }
 
     toggleBalance(index) {
@@ -59,7 +60,7 @@ class UI {
         }
     }
 
-    buyProduct(index, price, accountIndex) {
+    buyProduct(productIndex, price, accountIndex) {
         const account = this.bankAccounts[accountIndex];
         if (account.withdraw(price)) {
             this.displayAccounts();
@@ -100,11 +101,11 @@ document.getElementById('tbody').addEventListener('click', (e) => {
     }
 });
 
-document.querySelectorAll(".buy-button").forEach((button, index) => {
-    button.addEventListener("click", () => {
+document.querySelectorAll(".buy-button").forEach((button) => {
+    button.addEventListener("click", (e) => {
         const price = parseFloat(button.parentElement.querySelector(".price").innerText);
         const accountIndex = parseInt(button.parentElement.querySelector(".account-select").value);
-        ui.buyProduct(index, price, accountIndex);
+        ui.buyProduct(button.dataset.productIndex, price, accountIndex);
     });
 });
 

@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.signup-container, .login-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+#UserInfo {
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+#header-content {
+    padding-left: 0;
+}
+
+#News {
+    padding: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}

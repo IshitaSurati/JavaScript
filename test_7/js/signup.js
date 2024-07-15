@@ -1,17 +1,13 @@
-import navbar from "/test_7/components/navbar.js";
-import getValue from "/test_7/components/helper.js";
+document.getElementById('SignupData').addEventListener('submit', event => {
+    event.preventDefault();
+    const uname = document.getElementById('uname').value;
+    const email = document.getElementById('email').value;
+    const pass = document.getElementById('pass').value;
 
-const handleData = (e) => {
-    e.preventDefault();
-    let user = {
-        username: getValue("username"),
-        email: getValue("email"),
-        password: getValue("password")
-    };
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("isLogin", true);
-    window.location.href = "/test_7/";
-};
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ uname, email, pass });
+    localStorage.setItem('users', JSON.stringify(users));
 
-document.getElementById("signupForm").addEventListener("submit", handleData);
-document.getElementById("navbar").innerHTML = navbar();
+    alert('Signup successful!');
+    window.location.href = 'login.html';
+});
