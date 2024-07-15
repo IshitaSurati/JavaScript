@@ -1,7 +1,3 @@
-import navbar from "../components/navbar.js";
-
-document.getElementById("navbar").innerHTML = navbar();
-
 document.getElementById('addplaces').addEventListener('submit', event => {
     event.preventDefault();
 
@@ -14,14 +10,13 @@ document.getElementById('addplaces').addEventListener('submit', event => {
 
     let products = JSON.parse(localStorage.getItem("products")) || [];
     const newPlace = {
-        id: Date.now(),
+        id: Date.now().toString(), // Ensure ID is a string
         title,
-        img1,
-        img2,
-        img3,
+        img: [img1, img2, img3], // Store images as an array
         cost,
         desc,
-        likes: 0
+        likes: 0,
+        comments: [] // Initialize comments as an empty array
     };
 
     products.push(newPlace);

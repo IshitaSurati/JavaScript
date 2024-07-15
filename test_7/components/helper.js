@@ -1,14 +1,16 @@
-export const createElement = (tag, content, attributes = {}) => {
-    const element = document.createElement(tag);
-    element.innerHTML = content;
-  
-    for (const [key, value] of Object.entries(attributes)) {
-        element.setAttribute(key, value);
-    }
-  
-    return element;
-  };
-  
-  export const getElement = (id) => {
-    return document.getElementById(id);
-  };
+export const createElement = (tag, innerHTML, attributes) => {
+  const element = document.createElement(tag);
+  if (innerHTML) {
+      element.innerHTML = innerHTML;
+  }
+  if (attributes) {
+      Object.keys(attributes).forEach(key => {
+          element.setAttribute(key, attributes[key]);
+      });
+  }
+  return element;
+};
+
+export const getElement = (id) => {
+  return document.getElementById(id);
+};

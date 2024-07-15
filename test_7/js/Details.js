@@ -1,7 +1,6 @@
 import navbar from "../components/navbar.js";
 import { createElement, getElement } from "../components/helper.js";
 
-
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("navbar").innerHTML = navbar();
 
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         const product = getElement("Details");
 
-        let likeButton; 
+        let likeButton;
 
         const UI_view = () => {
             product.innerHTML = "";
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const slider = createElement(
                 "div",
                 `<div class="owl-carousel owl-theme">
-                    ${data.img.map(img => `<div class="item"><img src="${img}" class="d-block w-100" alt="..."></div>`).join('')}
+                    ${(data.img || []).map(img => `<div class="item"><img src="${img}" class="d-block w-100" alt="..."></div>`).join('')}
                 </div>`,
                 {}
             );
@@ -61,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 createElement("h4", `Welcome To Tourist`, { class: "ms-5" }),
                 slider,
                 createElement("h4", `${data.title}`, { class: "ms-5" }),
-                createElement("p", `${data.Description}`, { class: "ms-5" }),
-                createElement("p", `Price : <span class="fw-bold">${data.price}</span>`, {
+                createElement("p", `${data.desc}`, { class: "ms-5" }),
+                createElement("p", `Price : <span class="fw-bold">${data.cost}</span>`, {
                     class: "ms-5",
                 }),
                 likeButton,
@@ -80,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
             form.addEventListener("submit", add_Comment, false);
             print_Comment();
 
-        
             $(document).ready(function(){
                 $(".owl-carousel").owlCarousel({
                     items: 1,
@@ -125,14 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#commentForm").reset();
         };
 
-    
         const storedLikes = localStorage.getItem(`likes_${data.id}`);
         if (storedLikes !== null) {
-            data.likes = parseInt(storedLikes, 10); 
+            data.likes = parseInt(storedLikes, 10);
             if (likeButton) {
-                likeButton.innerHTML = `Like : <span class="fw-bold">${data.likes}</span>`; 
-            } else {
-                console.error("Like button element not found in DOM.");
+                likeButton.innerHTML = `Like : <span class="fw-bold">${data.likes}</span>`;
             }
         }
 

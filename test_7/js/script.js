@@ -4,7 +4,6 @@ document.getElementById("navbar").innerHTML = navbar();
 
 let products = JSON.parse(localStorage.getItem("products")) || [];
 
-// Function to render products
 const ProductItems = (data) => {
     const productList = document.getElementById("productList");
     productList.innerHTML = "";
@@ -60,7 +59,6 @@ const ProductItems = (data) => {
 
 ProductItems(products);
 
-// Sorting functions
 const HandleCost = (order) => {
     let temp = [...products];
     temp.sort((a, b) => order === "priceLTH" ? a.cost - b.cost : b.cost - a.cost);
@@ -73,7 +71,6 @@ const HandleLikes = (order) => {
     ProductItems(temp);
 };
 
-// Search functions
 const handleSearch = (value) => {
     const searchValue = value.toLowerCase();
     const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchValue));
