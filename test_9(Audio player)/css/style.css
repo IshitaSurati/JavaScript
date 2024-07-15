@@ -1,0 +1,74 @@
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+}
+
+.audio-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.playlist-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#searchValue {
+    flex: 1; /* Take remaining space in the flex container */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-button {
+    width: 100px;
+    height: 40px; /* Increased height for better visibility */
+    margin-left: 10px; /* Added margin for spacing */
+    background-color: yellowgreen;
+    color: #090909;
+    border: none; /* Removed border for cleaner look */
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #8dc26f; /* Darker shade on hover */
+    color: #fff; /* White text on hover */
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.playlist-item:hover {
+    background-color: #f1f1f1;
+}
+
+.playlist-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
