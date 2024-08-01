@@ -7,19 +7,19 @@ body {
     color: #fff;
     font-family: sans-serif;
     margin: 0;
-    padding: 20px 0; /* Add padding to the body to create space at the top and bottom */
+    padding: 20px 0;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    background-color: #282c34;
+    background-color: #383c44;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 600px;
     padding: 20px;
-    margin-top: 20px; /* Add margin at the top */
+    margin-top: 20px;
 }
 
 input[type="text"] {
@@ -30,26 +30,23 @@ input[type="text"] {
     border-radius: 5px;
 }
 
-button[type="button"] {
+button {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: none;
     border-radius: 5px;
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
 }
-#search-btn{
-    height: 30px;
-    width: 650px;
-}
+
 .weather-details {
-    display: flex; /* Arrange left and right sections side by side */
+    display: flex;
 }
 
 .left {
-    flex: 1; /* Make the left section take up half the container */
+    flex: 1;
     background: linear-gradient(to bottom, #4682B4, #ADD8E6);
     display: flex;
     flex-direction: column;
@@ -58,12 +55,12 @@ button[type="button"] {
 }
 
 .right {
-    flex: 1; /* Make the right section take up half the container */
-    background-color: #282c34;
+    flex: 1;
+    background-color: #383c44;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center the contents vertically */
+    justify-content: center;
 }
 
 .title {
@@ -101,12 +98,6 @@ button[type="button"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.detail-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 5px;
 }
 
 .detail-label {
